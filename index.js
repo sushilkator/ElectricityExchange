@@ -32,35 +32,3 @@ getReactiveProjectList().catch((err) => {
 
 // }
 
-[
-    {
-        projectName: "",
-        projectDescription: "",
-        tweets: [
-            
-        ]
-    },
-    {
-        projectName: "",
-        projectDescription: "",
-        tweets: [
-            {
-                userName: "",
-                shortTweet: "",
-                date: ""
-            }
-        ]
-    }
-    , {
-        projectName: "",
-        projectDescription: "",
-        tweets: [
-            {
-                userName: "",
-                shortTweet: "",
-                date: ""
-            }
-        ]
-    }
-]
-

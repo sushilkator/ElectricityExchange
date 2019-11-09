@@ -16,3 +16,4 @@ Update the below fields from twitter developer API into twitterConfig.json file:
 
 - npm install
 - node index.js 
+- then result file is tweets.json
