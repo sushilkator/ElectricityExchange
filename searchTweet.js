@@ -1,7 +1,7 @@
 const Twitter = require('twitter');
 const twitterConfig = require("./twitterConfig");
 const client = new Twitter(twitterConfig);
-const gitTweetList = (q) => {
+const gitTweetList = async(q) => {
     return new Promise((resolve, reject) => {
         client.get('search/tweets', { q: q }, (error, tweets, response) => {
             if (error)

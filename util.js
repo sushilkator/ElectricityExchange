@@ -1,10 +1,11 @@
 const fs = require('fs');
-
+const twitList = require('./searchTweet');
 
 module.exports = {
     extractProjectInfo: (data)=>{
        return {
-            projectName: data.full_name,
+            projectName: data.name,
+            projectFullName : data.full_name,
             projectDescription: data.description,
             tweets: []
         }
@@ -20,7 +21,11 @@ module.exports = {
             if(err) {
                  console.log("Some issue with file write");
             }
-            console.log("The file was saved!");
+            console.log("To see final result see 'tweets.json' file !");
         }); 
+    },
+    tweets : (list)=>{
+        let data = list.map(d=>{return twitList(d.name);})
+        return Promise.all(data);
     }
 }
