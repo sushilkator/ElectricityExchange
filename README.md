@@ -15,5 +15,5 @@ Update the below fields from twitter developer API into twitterConfig.json file:
 ## Run
 
 - npm install
-- keyword = Reactive node index.js 
+- keyword=Reactive node index.js 
 - then result file is tweets.json
