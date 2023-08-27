@@ -1,31 +1,32 @@
 const gitProjectList = require('./gitProjectSearch');
 const util = require('./util');
 const keyword = process.env.keyword || 'Reactive';
-const getReactiveProjectList = async (keyword) => {
-    const gitProjects = await gitProjectList(keyword);
-    if (gitProjects.total_count === 0) {
-        console.log(`Git project does not exist for "${keyword}" word`);
+
+const getReactiveProjectList = async (searchKeyword) => {
+    const gitProjects = await gitProjectList(searchKeyword);
+
+    if (!gitProjects.total_count) {
+        console.log(`No projects found with keyword "${searchKeyword}"`);
         return [];
     }
-    let projectList = gitProjects.total_count < 11 ? gitProjects.items : gitProjects.items.slice(0, 10);
-    let projectInfo = projectList.map(d=>{return util.extractProjectInfo(d)});
-    let tweetList = await util.tweets(projectList);
-    let list = tweetList.map(d=>{return util.extractTweetInfo(d)});
-    projectInfo.forEach((e,i )=> {
-        projectInfo[i].tweets = list[i];
+
+    const topProjects = gitProjects.items.slice(0, Math.min(gitProjects.total_count, 10));
+    const projectInfo = topProjects.map(util.extractProjectInfo);
+    const tweetList = await util.tweets(topProjects);
+
+    tweetList.forEach((tweet, index) => {
+        projectInfo[index].tweets = util.extractTweetInfo(tweet);
     });
+
     return projectInfo;
-}
-getReactiveProjectList(keyword).then((res)=>{
-    console.log(res);
-    util.writeData(JSON.stringify(res));
-}).catch((err) => {
-    console.log('Something went wrong', err);
-});
+};
 
-// try {
-//     getReactiveProjectList();
-// } catch(e){
-
-// }
-
+(async () => {
+    try {
+        const projects = await getReactiveProjectList(keyword);
+        console.log(projects);
+        util.writeData(JSON.stringify(projects));
+    } catch (error) {
+        console.error('Something went wrong:', error);
+    }
+})();
