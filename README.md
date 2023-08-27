@@ -1,16 +1,23 @@
 # ElectricityExchange
-# Command line API for github twitter mashup
 
-## SETUP
+A command-line API that mashes up GitHub and Twitter data.
 
-Update the below fields from twitter developer API into twitterConfig.json file:
+## Setup
 
-- Consumer Key
-- Consumer Secret
-- Access Token Key
-- Access Token secret
+1. **Prepare Twitter Configurations**:
 
-> You can find above keys from twitter developer profile -> Apps -> Keys and Tokens
+   Navigate to the `twitterConfig.json` file and update the following fields with details from your Twitter Developer API:
+
+   - `Consumer Key`
+   - `Consumer Secret`
+   - `Access Token Key`
+   - `Access Token Secret`
+
+   > 📌 **Note**: If you're unsure where to find these keys:
+   >
+   > 1. Log in to your Twitter Developer Profile.
+   > 2. Head to `Apps`.
+   > 3. Select your app and navigate to `Keys and Tokens`.
 
 ## Run
 
